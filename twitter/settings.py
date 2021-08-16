@@ -42,6 +42,9 @@ INSTALLED_APPS = [
 
     #project apps
     'accounts',
+
+    # debug tool
+    'debug_toolbar',
 ]
 
 REST_FRAMEWORK = {
@@ -59,9 +62,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'twitter.urls'
+
+INTERNAL_IPS = ['10.0.2.2']
 
 TEMPLATES = [
     {
