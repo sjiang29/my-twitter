@@ -17,7 +17,7 @@ class TweetViewSet(viewsets.GenericViewSet,
             return [AllowAny()]
         return [IsAuthenticated()]
 
-    def create(self,request, *args, **kwargs):
+    def create(self,request,*args, **kwargs):
         serializer = TweetCreateSerializer(
             data = request.data,
             context = {'request':request},
@@ -31,7 +31,7 @@ class TweetViewSet(viewsets.GenericViewSet,
         tweet = serializer.save()
         return Response(TweetSerializer(tweet).data, status = 201)
 
-    def list(self, request, *args, **kwargs):
+    def list(self, request,*args, **kwargs):
         """
         重载 list 方法，不列出所有 tweets，必须要求指定 user_id 作为筛选条件
         """

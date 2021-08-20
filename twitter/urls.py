@@ -19,6 +19,7 @@ from rest_framework import routers
 # from accounts.api import views
 from accounts.api.views import UserViewSet, AccountViewSet
 from tweets.api.views import TweetViewSet
+from friendships.api.views import FriendshipViewSet
 from django.conf import settings
 
 
@@ -26,6 +27,7 @@ router = routers.DefaultRouter()
 router.register(r'api/users', UserViewSet)
 router.register(r'api/accounts', AccountViewSet, basename='accounts')
 router.register(r'api/tweets', TweetViewSet, basename='tweets')
+router.register(r'api/friendships',FriendshipViewSet,basename='friendships')
 
 
 urlpatterns = [
@@ -35,5 +37,7 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns.append( path('__debug__', include(debug_toolbar.urls)) )
+   import debug_toolbar
+   urlpatterns.append(
+       path('__debug__', include(debug_toolbar.urls))
+   )
