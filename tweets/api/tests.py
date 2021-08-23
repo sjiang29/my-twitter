@@ -10,6 +10,10 @@ TWEET_CREATE_API = '/api/tweets/'
 
 class TweetApiTests(TestCase):
 
+    @property
+    def anonymous_client(self):
+        return self._anonymous_client
+
     def setUp(self):
         self.anonymous_client = APIClient()
 
@@ -67,3 +71,7 @@ class TweetApiTests(TestCase):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.data['user']['id'], self.user1.id)
         self.assertEqual(Tweet.objects.count(), tweets_count + 1)
+
+    @anonymous_client.setter
+    def anonymous_client(self, value):
+        self._anonymous_client = value
