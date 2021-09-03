@@ -5,6 +5,7 @@ from rest_framework.exceptions import ValidationError
 from tweets.models import Tweet
 
 
+
 class CommentSerializer(serializers.ModelSerializer):
     user = UserSerializer()
 
@@ -38,13 +39,13 @@ class CommentSerializerForCreate(serializers.ModelSerializer):
             content=validated_data['content'],
         )
 
-    class CommentSerializerForUpdate(serializers.ModelSerializer):
+class CommentSerializerForUpdate(serializers.ModelSerializer):
         class Meta:
             model = Comment
             fields = ('content',)
 
-    def update(self, instance, validated_data):
-        instance.content = validated_data['content']
-        instance.save()
-        # update 方法要求 return 修改后的 instance 作为返回值
-        return instance
+        def update(self, instance, validated_data):
+            instance.content = validated_data['content']
+            instance.save()
+            # update 方法要求 return 修改后的 instance 作为返回值
+            return instance
